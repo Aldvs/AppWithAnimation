@@ -5,11 +5,12 @@
 //  Created by admin on 12.01.2022.
 //
 
-import UIKit
+import Spring
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var coreAnimationView: UIView!
+    @IBOutlet weak var springAnimationView: SpringView!
     
     private var animationStarted = false
     
@@ -24,6 +25,19 @@ class ViewController: UIViewController {
                 }
             }
         sender.pulsate()
+    }
+    
+    @IBAction func runSpringAnimation(_ sender: SpringButton) {
+        springAnimationView.animation = "pop"
+        springAnimationView.curve = "easyInOut"
+        springAnimationView.force = 2
+        springAnimationView.duration = 1
+        springAnimationView.delay = 0.3
+        
+        springAnimationView.animate()
+        
+        sender.animation = "squeeze"
+        sender.animate()
     }
 }
 
